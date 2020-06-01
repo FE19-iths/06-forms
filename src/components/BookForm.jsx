@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BookForm.css';
 
 const BookForm = () => {
@@ -8,6 +8,21 @@ const BookForm = () => {
     const stopSubmit = event => {
         event.preventDefault();
     }
+
+    useEffect(() => {
+        // om det är tomt i input-fälten, men finns saker i localStorage - hämta data från localStorage och lägg i input-fälten
+        // annars -> spara det användaren skrivit i localStorage
+        if( title === '' && author === '' ) {
+            let cachedBook = JSON.parse(localStorage.getItem('library.book'));
+            if( cachedBook ) {
+                setTitle(cachedBook.title);
+                setAuthor(cachedBook.author);
+            }
+        } else {
+            localStorage.setItem('library.book', JSON.stringify({ title, author }));
+        }
+    }, [title, author])
+
     // First input is an UNCONTROLLED component
     // Second input is CONTROLLED
     return (
