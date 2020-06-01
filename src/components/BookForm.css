@@ -1,0 +1,16 @@
+.form-group {
+    /* border: 1px solid gray; */
+    border-radius: 4px;
+    padding: 0.7em;
+    font-family: 'Roboto';
+}
+.form-group label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.form-group input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
